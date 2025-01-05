@@ -4,29 +4,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Testing Post request</title>
+    <title>Admin Signup</title>
 </head>
 
 <body>
-    <form action="http://localhost:4001/admin" method="POST">
+    <h1>Admin Signup</h1>
+    <form id="adminForm">
         <label for="name">Name:</label>
-        <input type="text" name="name" required><br><br>
+        <input type="text" id="name" name="name" required><br><br>
+        
         <label for="email">Email:</label>
-        <input type="email" name="email" required><br><br>
+        <input type="email" id="email" name="email" required><br><br>
+        
         <label for="password">Password:</label>
-        <input type="text" name="password"><br><br>
-        <button type="submit">submit</button>
-
+        <input type="password" id="password" name="password" required><br><br>
+        
+        <button type="submit">Submit</button>
     </form>
-    <!-- <script>
-        async function testPost() {
-            let a = await fetch("/", { method: "POST" })
-            let b = await a.text();
-            console.log(b);
-        }
 
-        testPost();
-    </script> -->
+    <div id="responseMessage" style="margin-top: 20px; font-size: 18px;"></div>
+
+    <script>
+        // Event listener for the form submission
+        document.getElementById('adminForm').addEventListener('submit', async function (event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            // Collect form data
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // Create an object to send in the request body
+            const data = {
+                name: name,
+                email: email,
+                password: password
+            };
+
+            try {
+                // Send a POST request to the backend server
+                const response = await fetch('https://hemant0099.onrender.com/admin', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                // Handle the response
+                const result = await response.json();
+                const messageDiv = document.getElementById('responseMessage');
+
+                if (response.ok) {
+                    // Success message
+                    messageDiv.style.color = 'green';
+                    messageDiv.textContent = 'Admin created successfully!';
+                } else {
+                    // Error message
+                    messageDiv.style.color = 'red';
+                    messageDiv.textContent = 'Error: ' + result.message;
+                }
+            } catch (error) {
+                console.error('Error during fetch:', error);
+                const messageDiv = document.getElementById('responseMessage');
+                messageDiv.style.color = 'red';
+                messageDiv.textContent = 'Error: Unable to create admin';
+            }
+        });
+    </script>
 </body>
 
 </html>
