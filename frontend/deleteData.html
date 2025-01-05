@@ -20,7 +20,7 @@
             const userName = document.querySelector("#userName").value; // Get user ID from the data attribute
               
             try {
-                const response = await fetch(`http://localhost:4001/admin/${userName}`, {
+                const response = await fetch('https://hemant0099.onrender.com/admin/${userName}`, {
                     method: 'DELETE', // Send DELETE request
                     headers: {
                         'Content-Type': 'application/json',
