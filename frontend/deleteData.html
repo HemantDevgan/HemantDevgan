@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete User</title>
+</head>
+
+<body>
+    <h1>Delete User</h1>
+    <label for="userName">User name:</label>
+    <input type="text" id="userName" name="name" required><br><br>
+
+    <button id="deleteButton" data-user-id="123">Delete User</button> <!-- Data attribute for user ID -->
+
+    <script>
+
+        document.getElementById('deleteButton').addEventListener('click', async function () {
+            const userName = document.querySelector("#userName").value; // Get user ID from the data attribute
+              
+            try {
+                const response = await fetch(`http://localhost:4001/admin/${userName}`, {
+                    method: 'DELETE', // Send DELETE request
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    alert('User deleted successfully!');
+                    console.log(data);
+                } else {
+                    alert('Failed to delete user.');
+                }
+            } catch (error) {
+                alert('Error occurred: ' + error.message);
+            }
+        });
+    </script>
+</body>
+
+</html>

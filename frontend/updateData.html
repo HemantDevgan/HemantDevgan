@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PUT Method Example</title>
+</head>
+<body>
+    <h1>Update Data</h1>
+    <form id="updateForm">
+        <label for="userName">User name:</label>
+        <input type="text" id="userId" name="name" required><br><br>
+
+        <label for="name">New Name:</label>
+        <input type="text" id="userName" name="name" ><br><br>
+
+        <label for="email">New Email:</label>
+        <input type="text" id="userEmail" name="email" ><br><br>
+
+        <button type="submit">Update</button>
+    </form>
+
+    <p id="responseMessage"></p>
+
+    <script>
+        // JavaScript to handle form submission
+        document.getElementById('updateForm').addEventListener('submit', async (event) => {
+            event.preventDefault(); // Prevent form from refreshing the page
+
+            // Get form data
+            const adminName = document.getElementById('userId').value;
+            const userName = document.getElementById('userName').value;
+            const userEmail = document.getElementById('userEmail').value;
+            
+            // Create PUT request
+            try {
+                const response = await fetch(`http://localhost:4001/admin/${adminName}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ name: userName , email: userEmail }),
+                });
+
+                // Check response
+                if (response.ok) {
+                    document.getElementById('responseMessage').textContent = 'User updated successfully!';
+                } else {
+                    document.getElementById('responseMessage').textContent = 'Failed to update user.';
+                }
+            } catch (error) {
+                document.getElementById('responseMessage').textContent = 'Error: ' + error.message;
+            }
+        });
+    </script>
+</body>
+</html>

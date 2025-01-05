@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>new_crm</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            height: 20vh;
+            background-color: rgb(105, 80, 42);
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        .add_btn{
+            height: 30px;
+            width: 70px;
+            border: none;
+            background-color: aquamarine;
+            border-radius: 5px;
+        }
+        .addData{
+            padding: 10px;
+            height: 40px;
+            width: 100px;
+            display: flex;
+            align-items: center;
+        }
+        .get_btn{
+            height: 30px;
+            width: 70px;
+            border: none;
+            background-color: aquamarine;
+            border-radius: 5px;
+        }
+        .getData{
+            padding: 10px;
+            height: 40px;
+            width: 100px;
+            display: flex;
+            align-items: center;
+        }
+        .update_btn{
+            height: 30px;
+            width: 70px;
+            border: none;
+            background-color: aquamarine;
+            border-radius: 5px;
+        }
+        .updateData{
+            padding: 10px;
+            height: 40px;
+            width: 100px;
+            display: flex;
+            align-items: center;
+        }
+        .delete_btn{
+            height: 30px;
+            width: 70px;
+            border: none;
+            background-color: aquamarine;
+            border-radius: 5px;
+        }
+        .deleteData{
+            padding: 10px;
+            height: 40px;
+            width: 100px;
+            display: flex;
+            align-items: center;
+        }
+        .btn:hover{
+            background-color: rgb(51, 122, 41);
+            color: white;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="addData">
+            <button class="add_btn btn">add User</button>
+        </div>
+        <div class="getData">
+            <button class="get_btn btn">get User</button>
+        </div>
+        <div class="updateData">
+            <button class="update_btn btn">update</button>
+        </div>
+        <div class="deleteData">
+            <button class="delete_btn btn">delete</button>
+        </div>
+    </nav>
+    <script>
+        const add = document.querySelector(".add_btn");
+        add.addEventListener("click", () => {
+            console.log("clicked");
+            window.location.href = "addData.html";
+        });
+        const get = document.querySelector(".get_btn");
+        get.addEventListener("click",()=>{
+            window.location.href = "getData.html";
+        });
+        const update = document.querySelector(".update_btn");
+        update.addEventListener("click",()=>{
+            window.location.href = "updateData.html";
+        });
+        const del = document.querySelector(".delete_btn");
+        del.addEventListener("click",()=>{
+            window.location.href = "deleteData.html";
+        });
+    </script>
+</body>
+
+</html>
